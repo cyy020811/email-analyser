@@ -2,7 +2,6 @@ import { Button, Center, Heading, Image, Stack } from "@chakra-ui/react"
 import { FcGoogle } from "react-icons/fc";
 import logo from '../assets/logo.png';
 import { supabase } from "@/services/supabaseClient";
-import { useNavigate } from "react-router";
 
 const Login = () => {
 
