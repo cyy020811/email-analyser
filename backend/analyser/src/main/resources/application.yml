@@ -1,0 +1,12 @@
+spring:
+    profiles:
+        active: dev
+
+    application:
+        name: analyser
+
+    datasource:
+        url: jdbc:postgresql://[HOST]:5432/postgres?user=[USER]&password=[PASSWORD]
+
+    jpa:
+        show-sql: true
