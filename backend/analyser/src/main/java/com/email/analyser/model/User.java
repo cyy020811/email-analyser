@@ -8,7 +8,6 @@ import java.util.UUID;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,7 +26,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @Entity
-@ToString
+@ToString(exclude = "interactions")
 @Table(name = "users", schema = "auth")
 public class User {
     @Id
@@ -50,7 +49,7 @@ public class User {
     private Timestamp updatedAt;
 
     @OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST,
-            CascadeType.REMOVE }, orphanRemoval = true, fetch = FetchType.EAGER)
+            CascadeType.REMOVE }, orphanRemoval = true)
     @Builder.Default
     private Set<Interaction> interactions = new HashSet<Interaction>();
 

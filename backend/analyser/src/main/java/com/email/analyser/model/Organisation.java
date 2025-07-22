@@ -44,6 +44,7 @@ public class Organisation {
 
     @OneToMany(mappedBy = "organisation", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
     @Builder.Default
+    @ToString.Exclude
     private Set<Domain> domains = new HashSet<Domain>();
 
 }
