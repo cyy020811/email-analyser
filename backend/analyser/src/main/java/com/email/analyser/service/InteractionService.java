@@ -19,7 +19,7 @@ public class InteractionService {
     public Iterable<InteractionDto> getUserInteractions(UUID userId) {
         return interactionRepository.findByUserId(userId)
                 .stream()
-                .map(interactionMapper::tDto)
+                .map(interactionMapper::toDto)
                 .toList();
     }
 

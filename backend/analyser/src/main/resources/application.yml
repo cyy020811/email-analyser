@@ -10,3 +10,7 @@ spring:
 
     jpa:
         show-sql: true
+
+api:
+    keys:
+        emailHunter: //[API KEY] 

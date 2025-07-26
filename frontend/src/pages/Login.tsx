@@ -9,7 +9,12 @@ const Login = () => {
         await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
-                redirectTo: `${window.location.origin}/dashboard`
+                redirectTo: `http://localhost:5173/auth/callback`,
+                scopes: 'https://www.googleapis.com/auth/gmail.readonly',
+                queryParams: {
+                    access_type: 'offline',
+                    prompt: 'consent',
+                },
             }
         })
     }
