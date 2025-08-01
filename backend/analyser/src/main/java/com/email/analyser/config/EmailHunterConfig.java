@@ -7,7 +7,7 @@ import lombok.Getter;
 
 @Configuration
 @Getter
-public class EmailHunterConfigAPI {
+public class EmailHunterConfig {
     @Value("${api.keys.emailHunter}")
     private String key;
 }

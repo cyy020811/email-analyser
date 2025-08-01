@@ -1,5 +1,7 @@
 package com.email.analyser.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -13,4 +15,6 @@ public interface InteractionMapper {
     Interaction toEnitity(InteractionDto interactionDto);
 
     InteractionDto toDto(Interaction interaction);
+
+    List<InteractionDto> toInteractionDtoList(Iterable<Interaction> interactions);
 }
