@@ -42,7 +42,7 @@ public class User {
     @Column(name = "last_sign_in_at")
     private Timestamp lastSignInAt;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", insertable = false, updatable = false)
     private Timestamp createdAt;
 
     @Column(name = "updated_at")

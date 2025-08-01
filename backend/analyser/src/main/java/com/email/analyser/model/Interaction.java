@@ -50,7 +50,7 @@ public class Interaction {
     @Column(name = "summary")
     private String summary;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", insertable = false, updatable = false)
     private Timestamp createdAt;
 
     @Column(name = "updated_at")

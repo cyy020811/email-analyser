@@ -34,7 +34,7 @@ public class Domain {
     @Column(name = "domain")
     private String domain;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", insertable = false, updatable = false)
     private Timestamp createdAt;
 
     @ManyToOne

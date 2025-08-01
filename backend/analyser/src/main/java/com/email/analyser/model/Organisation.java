@@ -42,7 +42,7 @@ public class Organisation {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", insertable = false, updatable = false)
     private Timestamp createdAt;
 
     @OneToMany(mappedBy = "organisation", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })

@@ -8,5 +8,5 @@ import org.springframework.data.repository.CrudRepository;
 import com.email.analyser.model.Interaction;
 
 public interface InteractionRepository extends CrudRepository<Interaction, UUID> {
-    List<Interaction> findByUserId(UUID id);
+    List<Interaction> findByUserId(UUID userId);
 }

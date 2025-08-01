@@ -59,6 +59,6 @@ public class Email {
     @JoinColumn(name = "organisation_id")
     private Organisation organisation;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", insertable = false, updatable = false)
     private Timestamp createdAt;
 }
