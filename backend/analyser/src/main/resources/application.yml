@@ -14,3 +14,7 @@ spring:
 api:
     keys:
         emailHunter: //[API KEY] 
+
+google:
+    gmail:
+        maxResults: 200

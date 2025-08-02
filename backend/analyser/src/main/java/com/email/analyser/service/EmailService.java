@@ -3,6 +3,7 @@ package com.email.analyser.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -33,8 +34,8 @@ public class EmailService {
                 .toList();
     }
 
-    public Iterable<EmailDto> getUserGmailMessages(String token, User user) {
-        List<Message> messages = gmailService.getUserGmails(token);
+    public Iterable<EmailDto> getUserGmailMessages(String token, User user, Map<String, String> queryParams) {
+        List<Message> messages = gmailService.getUserGmails(token, queryParams);
         List<Email> emails = new ArrayList<Email>();
         HashMap<String, Organisation> domainOrganisationMap = new HashMap<String, Organisation>();
 

@@ -4,9 +4,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.email.analyser.service.google.GmailService;
-import com.google.api.client.auth.oauth2.TokenResponse;
+import com.google.api.services.gmail.model.Message;
 
 import lombok.AllArgsConstructor;
+
+import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -22,11 +24,8 @@ public class TestController {
 
         String token = authoriazation.replace("Bearer ", "").trim();
 
-        TokenResponse tokenResponse = new TokenResponse()
-                .setAccessToken(token);
-
-        gmailService.getUserGmails(tokenResponse);
-        System.out.println(tokenResponse);
+        List<Message> messages = gmailService.getUserGmails(token, null);
+        System.out.println(messages.get(0));
     }
 
 }

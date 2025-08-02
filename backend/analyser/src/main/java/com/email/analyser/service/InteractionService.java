@@ -16,7 +16,6 @@ import com.email.analyser.model.Email;
 import com.email.analyser.model.Interaction;
 import com.email.analyser.model.Organisation;
 import com.email.analyser.model.User;
-import com.email.analyser.repository.EmailRepository;
 import com.email.analyser.repository.InteractionRepository;
 import com.email.analyser.repository.UserRepository;
 
@@ -28,7 +27,6 @@ public class InteractionService {
     private final InteractionRepository interactionRepository;
     private final InteractionMapper interactionMapper;
     private final EmailMapper emailMapper;
-    private final EmailRepository emailRepository;
     private final EmailService emailService;
     private final UserRepository userRepository;
 
@@ -36,7 +34,7 @@ public class InteractionService {
         List<Interaction> interactions = interactionRepository.findByUserId(userId);
 
         if (interactions.size() == 0) {
-            interactions = createInteractions(userId, token);
+            interactions = initInteractions(userId, token);
         }
         return interactions.stream()
                 .map(interactionMapper::toDto)
@@ -49,17 +47,18 @@ public class InteractionService {
         interactionRepository.delete(interaction);
     }
 
+    // Use latest email timestamp
     public InteractionDto updateInteraction(UUID id) {
         return null;
     }
 
-    private List<Interaction> createInteractions(UUID userId, String token) {
-        long emailCount = emailRepository.countByUserId(userId);
+    private List<Interaction> initInteractions(UUID userId, String token) {
         User user = userRepository.findById(userId).orElseThrow();
+        List<Email> emails = emailMapper.toEmailList(emailService.getUserGmailMessages(token, user, null));
+        return generateInteractions(emails, user);
+    }
 
-        List<Email> emails = emailCount == 0 ? emailMapper.toEmailList(emailService.getUserGmailMessages(token, user))
-                : emailRepository.findByUserId(userId);
-
+    private List<Interaction> generateInteractions(List<Email> emails, User user) {
         Map<Organisation, Interaction> orgInteractionMap = new HashMap<>();
 
         emails.forEach(email -> {
